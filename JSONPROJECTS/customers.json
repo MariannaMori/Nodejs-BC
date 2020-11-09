@@ -1,0 +1,5 @@
+[
+    {"firstname":"Matt", "lastname":"River", "bonus":100},
+    {"firstname":"Leila","lastname":"Hökki", "bonus":300},
+    {"firstname":"Mary", "lastname":"Smith", "bonus":10}
+]

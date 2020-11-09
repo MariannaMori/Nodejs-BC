@@ -1,0 +1,6 @@
+[
+    {"model":"WBM", "licence":"ABC-1", "price":300000},
+    {"model":"Hoppa", "licence":"XYZ-123", "price":1000},
+    {"model":"Hoppa","licence":"DFG-12", "price": 20000},
+    {"model":"Ovlov", "licence":"HIK-2", "price":1000}
+]
