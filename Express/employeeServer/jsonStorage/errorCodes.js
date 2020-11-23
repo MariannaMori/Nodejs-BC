@@ -46,6 +46,21 @@ const MESSAGES = {
         code: CODES.REMOVE_OK,
         type:'info'
     }),
+    NOT_REMOVED:()=>({
+        message: 'No employee found with the given employeeId. Nothing removed.',
+        code: CODES.NOT_REMOVED,
+        type:'error'
+    }),
+    UPDATE_OK: id => ({
+        message: `Employee ${id} was updated`,
+        code: CODES.UPDATE_OK,
+        type:'info'
+    }),
+    NOT_UPDATED: ()=>({
+        message: 'Data was not updated',
+        code: CODES.NOT_UPDATED,
+        type:'error'
+    }),
     ALREADY_IN_USE: id=>({
         message:`EmployeeId ${id} was already in use`,
         code:CODES.ALREADY_IN_USE,

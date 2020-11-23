@@ -10,10 +10,12 @@ const storage = createDataStorage();
 
 //storage.get(12).then(employee => console.log(employee)).catch(err=>console.log(err.message, err.type, err.code));
 
-storage.insert({
-    "employeeId": 123,
-        "firstname": "Maryx",
-        "lastname": "Riverx",
-        "department": "ictx",
-        "salary": 9000
-}).then(status=>console.log(status)).catch(error=>console.log(error));
+//storage.insert({
+    //"employeeId": 124,
+    //"firstname": "Maryx",
+ //  "lastname": "Riverx",
+ //    "department": "ictx",
+  //      "salary": 9000
+//}).then(status=>console.log(status)).catch(error=>console.log(error));
+
+//storage.remove(123).then(result=>console.log(result)).catch(err=>console.log(err));
