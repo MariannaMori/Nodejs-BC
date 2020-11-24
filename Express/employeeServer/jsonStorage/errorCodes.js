@@ -31,14 +31,14 @@ const MESSAGES = {
         code: CODES.INSERT_OK,
         type: 'info'
     }),
-    WRITE_OK: ()=>({
-        message: `Write OK`,
-        code: CODES.WRITE_OK,
-        type: 'info'
-    }),
     NOT_INSERTED: ()=>({
-        message:`Employee was not inserted`,
+        message:'Employee was not inserted',
         code:CODES.NOT_INSERTED,
+        type:'error'
+    }),
+    ALREADY_IN_USE: id=>({
+        message:`EmployeeId ${id} was already in use`,
+        code:CODES.ALREADY_IN_USE,
         type:'error'
     }),
     REMOVE_OK: id=>({
@@ -47,7 +47,7 @@ const MESSAGES = {
         type:'info'
     }),
     NOT_REMOVED:()=>({
-        message: 'No employee found with the given employeeId. Nothing removed.',
+        message: 'No employee found with the given employeeId. Nothing removed',
         code: CODES.NOT_REMOVED,
         type:'error'
     }),
@@ -57,19 +57,19 @@ const MESSAGES = {
         type:'info'
     }),
     NOT_UPDATED: ()=>({
-        message: 'Data was not updated',
-        code: CODES.NOT_UPDATED,
+        message:'Data was not updated',
+        code:CODES.NOT_UPDATED,
         type:'error'
     }),
-    ALREADY_IN_USE: id=>({
-        message:`EmployeeId ${id} was already in use`,
-        code:CODES.ALREADY_IN_USE,
-        type:'error'
+    WRITE_OK: ()=>({
+        message: `Write OK`,
+        code: CODES.WRITE_OK,
+        type: 'info'
     }),
     WRITE_ERROR: errormessage => ({
         message: errormessage,
-        code: CODES.WRITE_ERROR,
-        type: 'error'
+        code:CODES.WRITE_ERROR,
+        type:'error'
     })
 }
 

@@ -3,8 +3,8 @@
 const path = require('path');
 const fs=require('fs').promises;
 
-const storageConfig=require('../storageConfig.json');
-const storageFile = path.join(__dirname, storageConfig.storageFile); 
+const storageConfig=require('./storageConfig.json');
+const storageFile = path.join(__dirname, storageConfig.storageFile);
 
 //wrapper function
 function createDataStorage(){
@@ -24,14 +24,13 @@ function createDataStorage(){
 
     async function writeStorage(data){
         try{
-            await fs.writeFile(storageFile, JSON.stringify(data, null,4),{encoding:'utf8', flag:'w'}); //flag w meansit replaces the old version
+            await fs.writeFile(storageFile, JSON.stringify(data, null,4),{encoding:'utf8', flag:'w'});
             return MESSAGES.WRITE_OK();
 
         }
         catch(err) {
             return MESSAGES.WRITE_ERROR(err.message);
         }
-
     }
 
     async function getFromStorage(id) {
@@ -47,53 +46,55 @@ function createDataStorage(){
             storage.push({
                 employeeId: +newEmployee.employeeId,
                 firstname: newEmployee.firstname,
-                lastname: newEmployee.lastname,
+                lastname:newEmployee.lastname,
                 department: newEmployee.department,
                 salary: +newEmployee.salary
             });
             await writeStorage(storage);
             return true;
             //with checks
-            //version 1
-            //return (await writeStorage(storage)).code===CODES.WRITE_OK; //should check this
-            //version 2
-            //const writeResult=await writeStorage(storage);
-           // if(writeResult.code === CODES.WRITE_OK){
-           //     return true
-           // }
-           //     return false;
-           // }
-            
-        } //end of addStorage function
-    
-    }
-async function removeFromStorage(id){
-    let storage = await readStorage();
-    const i = storage.findIndex(employee=>employeeId==id);
-    if(i<0) return false;
-    storage.splice(i,1);  //i = index
-    await writeStorage(storage);
-    return true;
-}
+            //version 1:
+            // return (await writeStorage(storage)).code===CODES.WRITE_OK; 
+            //version 2:
+            // const writeResult=await writeStorage(storage);
+            // if(writeResult.code === CODES.WRITE_OK){
+            //     return true
+            // }
+            // else {
+            //     return false;
+            // }
+        }
+    } //end of addStorage
 
-async function updateStorage(employee){
-    let storage = await readStorage();
-    const oldEmployee = storage.find(oldEmp => oldEmp.employeeId == employee.employeeId);
-    if(oldEmployee) {
-        Object.assign(oldEmployee, {
-            employeeId: +employee.employeeId,
-            firstname: employee.firstname,
-            lastname: employee.lastname,
-            department: employee.department,
-            salary: +employee.salary
-        });
+    async function removeFromStorage(id){
+        let storage = await readStorage();
+        const i = storage.findIndex(employee=>employee.employeeId==id);
+        if(i<0) return false;
+        storage.splice(i,1);
         await writeStorage(storage);
         return true;
     }
-    else {
-        return false;
+
+    async function updateStorage(employee){
+        let storage = await readStorage();
+        const oldEmployee = 
+            storage.find(oldEmp => oldEmp.employeeId == employee.employeeId);
+        if(oldEmployee) {
+            Object.assign(oldEmployee, {
+               employeeId: +employee.employeeId,
+               firstname: employee.firstname,
+               lastname: employee.lastname,
+               department: employee.department,
+               salary: +employee.salary 
+            });
+            await writeStorage(storage);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
-}
+
     //more to come
 
     class Datastorage{
@@ -123,20 +124,21 @@ async function updateStorage(employee){
         }
         insert(employee){
             return new Promise(async (resolve,reject)=>{
-                if(!(employee && employee.employeeId && 
-                    employee.firstname && employee.lastname)){
-                        reject(MESSAGES.NOT_INSERTED());
+                if(!(employee && employee.employeeId &&
+                     employee.firstname && employee.lastname)){
+                         reject(MESSAGES.NOT_INSERTED());
+                }
+                else{
+                    if( await addToStorage(employee)) {
+                        resolve(MESSAGES.INSERT_OK(employee.employeeId));
                     }
-                    else{
-                        if( await addToStorage(employee)) {
-                            resolve(MESSAGES.INSERT_OK(employee.employeeId));
-                        }
-                        else {
-                            reject(MESSAGES.ALREADY_IN_USE(employee.employeeId))
-                        }
+                    else {
+                        reject(MESSAGES.ALREADY_IN_USE(employee.employeeId));
                     }
+                }
             });
         }
+
         remove(employeeId){
             return new Promise(async (resolve, reject)=>{
                 if(!employeeId) {
@@ -152,20 +154,21 @@ async function updateStorage(employee){
                 }
             });
         }
+
         update(employee) {
             return new Promise( async (resolve, reject)=>{
                 if(!(employee && employee.employeeId &&
-                    employee.firstname && employee.lastname)){
-                        reject(MESSAGES.NOT_UPDATED());
+                     employee.firstname && employee.lastname)){
+                         reject(MESSAGES.NOT_UPDATED());
+                }
+                else {
+                    if(await updateStorage(employee)){
+                        resolve(MESSAGES.UPDATE_OK(employee.employeeId));
                     }
                     else {
-                        if(await updateStorage(employee)){
-                            resolve(MESSAGES.UPDATE_OK(employee.employeeId));
-                        }
-                        else {
-                            reject(MESSAGES.NOT_UPDATED());
-                        }
+                        reject(MESSAGES.NOT_UPDATED());
                     }
+                }
             });
         }
 
