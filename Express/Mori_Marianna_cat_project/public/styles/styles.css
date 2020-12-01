@@ -2,7 +2,8 @@ main, form {
     display:grid;
     align-items: center;
     justify-items: center;
-    background-color: lavender;
+    background: linear-gradient(#cc95c0, #dbd4b4, #7aa1d2);
+    font-family: 'Lato', sans-serif;
     
 }
 input[readonly]{
@@ -22,13 +23,14 @@ thead{
 table, th, td{
     border:solid black 1px;
     padding:0.5em;
-    background-color: white;
+    background-color: lightgray;
+    
 }
 
 
 button{
     margin: 1em;
-    font-family: sans-serif;
+    font-family: 'Lato', sans-serif;
     font-size: 15px;
     width:13em;
     height: 3em;
