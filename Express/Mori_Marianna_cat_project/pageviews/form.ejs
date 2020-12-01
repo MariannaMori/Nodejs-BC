@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles/styles.css" type="text/css">
+</head>
+<body>
+    <main>
+        <h1><%= header %></h1>
+        <form action="<%= action %>" method="POST">
+            <div>
+                <p>
+                    <label for="catId">Cat Id</label>
+                    <input type="text" id="catId" name="catId" size="5" 
+                    value="<%= catId.value %>" <%= catId.readonly %> >
+                </p>
+                <p>
+                    <label for="name">Cat name</label>
+                    <input type="text" id="name" name="name" size="15"
+                    value="<%= name.value %>" <%= name.readonly %> >
+                </p>
+                <p>
+                    <label for="length">Cat length</label>
+                    <input type="text" id="length" name="length" size="25"
+                    value="<%= length.value %>" <%= length.readonly %> >
+                </p>
+                <p>
+                    <label for="breed">Cat breed</label>
+                    <input type="text" id="breed" name="breed" size="10"
+                    value="<%= breed.value %>" <%= breed.readonly %> >
+                </p>
+                <p>
+                    <label for="salary">Cat year of birth</label>
+                    <input type="text" id="yearOfBirth" name="yearOfBirth" size="10"
+                    value="<%= yearOfBirth.value %>" <%= yearOfBirth.readonly %> >
+                </p>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <a href="/"><button>Menu</button></a>
+    </main>
+</body>
+</html>
