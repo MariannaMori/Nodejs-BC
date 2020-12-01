@@ -80,11 +80,11 @@ function createDataStorage(){
             storage.find(oldCat => oldCat.catId == cat.catId);
         if(oldCat) {
             Object.assign(oldCat, {
-                catId: +newCat.catId,
-                name: newCat.name,
-                length: newCat.length,
-                breed: newCat.breed,
-                yearOfBirth: +newCat.yearOfBirth 
+                catId: +cat.catId,
+                name: cat.name,
+                length: cat.length,
+                breed: cat.breed,
+                yearOfBirth: +cat.yearOfBirth 
             });
             await writeStorage(storage);
             return true;

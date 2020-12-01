@@ -37,7 +37,7 @@
     {
         "catId": 5,
         "name": "Fatzo",
-        "length": 35,
+        "length": "35",
         "breed": "longtail",
         "yearOfBirth": 2012
     }

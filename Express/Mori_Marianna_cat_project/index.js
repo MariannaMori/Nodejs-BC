@@ -50,11 +50,11 @@ app.post('/getCat', (req,res)=>{
         .catch(error=>sendErrorPage(res,error));
 });
 
-app.get('/form', (req,res)=>
+app.get('/inputform', (req,res)=>
     res.render('form',{
         title:'Add cat',
         header:'Add a new cat',
-        action:'/form',
+        action:'/insert',
         catId:{value:'', readonly:''},
         name:{value:'', readonly:''},
         length:{value:'', readonly:''},
@@ -63,7 +63,7 @@ app.get('/form', (req,res)=>
     })
 );
 
-app.post('/update', (req,res)=>{
+app.post('/insert', (req,res)=>{
     if(!req.body) res.sendStatus(500);
 
     dataStorage.insert(createCat(req.body))
@@ -71,7 +71,7 @@ app.post('/update', (req,res)=>{
         .catch(error => sendErrorPage(res,error));
 });
 
-app.get('/update', (req,res)=>
+app.get('/updateform', (req,res)=>
     res.render('form',{
         title:'Update cat',
         header:'Update cat data',
@@ -84,7 +84,7 @@ app.get('/update', (req,res)=>
     })
 );
 
-app.post('/update', (req,res)=>{
+app.post('/updatedata', (req,res)=>{
     if (!req.body) res.sendStatus(500);
     dataStorage.get(req.body.catId)
         .then(cat =>createCat(cat))
@@ -101,7 +101,7 @@ app.post('/update', (req,res)=>{
         .catch(error=>sendErrorPage(res,error));
 });
 
-app.post('/update',(req,res)=>{
+app.post('/updatecat',(req,res)=>{
     if(!req.body) res.sendStatus(500);
     else dataStorage.update(createCat(req.body))
         .then(status=>sendStatusPage(res,status))
