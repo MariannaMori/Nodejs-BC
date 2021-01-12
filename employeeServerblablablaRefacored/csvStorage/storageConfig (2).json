@@ -1,0 +1,4 @@
+{
+    "storageFile": "employees.csv",
+    "readerWriter": "csvReaderWriter.js"
+}
