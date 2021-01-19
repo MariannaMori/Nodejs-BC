@@ -36,6 +36,13 @@ app.route(`${resource}/:value`)
         dataStorage.remove(key,value)
             .then(status => res.json(status))
             .catch(error => res.json(error));
+    })
+    .put((req,res)=>{
+        if(!req.body) return res.sendStatus(500);
+        const value=req.params.value;
+        dataStorage.update(key,value.req.body)
+        .then(status=>res.json(status))
+        .catch(error=>res.json(error));
     });
     
     app.post(resource, (req,res) =>{
