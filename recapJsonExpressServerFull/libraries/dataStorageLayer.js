@@ -67,9 +67,31 @@ function createDataStorage(baseDir, config) {
             })
         }
 
+
+        update(key,value,resource) {
+            return new Promise(async (resolve,reject)=>{
+                if(key==undefined || value==undefined || resource==undefined){
+                    reject(MESSAGES.PROGRAM_ERROR());
+                } else if(await getFromStorage(key,value)){
+                    if(await updateStorage(key,resource)){
+                        resolve(MESSAGES.UPDATE_OK(key,value))
+                    }
+                    else{
+                        reject(MESSAGES.NOT_UPDATED());
+                    }
+                }else if(await addToStorage(resourse)){
+                    resolve(MESSAGES.INSERT_OK(key,value));
+                }else {
+                    reject(MESSAGES.NOT_INSERTED());
+                }
+            })
+        }
+        
+
     }; //end of class
 
     return new Datastorage();
 }
+
 
 module.exports = {createDataStorage};
