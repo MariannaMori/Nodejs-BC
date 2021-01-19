@@ -28,7 +28,7 @@ app.route(`${resource}/:value`)
     .get((req,res)=>{
         const value = req.params.value;
         dataStorage.get(key,value)
-            .then(book=>res.json(book))
+            .then(resource=>res.json(resource))
             .catch(error => res.json(error));
     })
     .delete((req,res)=>{
