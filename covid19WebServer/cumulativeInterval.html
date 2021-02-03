@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cumulative</title>
+    <link rel="stylesheet" href="/styles/styles.css" type="text/css">
+    <script src="/js/draw.js"></script>
+    <script src="/js/interval.js"></script>
+</head>
+<body>
+    <h1>covid19 cases</h1>
+    <div>
+    <label>Start date in ISO format <input type="text" id="isodate"></label>
+    <label>End date in ISO format <input type="text" id="enddate"></label>
+    <button id="send">Send</button>
+
+</div>
+<canvas id="canvasarea" width="800" height="500"></canvas>
+   
+</body>
+<footer>
+    Source:<br>
+    <a href="https://covidapi.info">Covid19 API</a> /
+    <a href="https://mit-license.org">MIT licensed</a><br>
+    <a href="https://github.com/CSSEGISandData/COVID-19">JHU CSSE COVID-19 Data</a>  /
+    <a href="https://creativecommons.org/licenses/by/4.0/">license CC 4.0 BY</a>
+</footer>
+</html>
