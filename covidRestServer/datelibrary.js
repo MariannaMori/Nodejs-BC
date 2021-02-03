@@ -1,7 +1,7 @@
 'use strict';
 
 function dateToIsoDate(date) {
-    const [isoDate,] = date.toISOString().split('T');
+    const [isoDate,] = date.toISOString().split('T'); //after T  is time part
     return isoDate;
 }
 
@@ -16,7 +16,7 @@ function addDays(isoDate, daysToAdd){
     return dateToIsoDate(date);
 }
 
-function addOneDay(isodate) {
+function addOneDay(isodate) { //adding one 1 day  function
     return addDays(isodate,1);
 }
 

@@ -24,7 +24,7 @@ function updateCovidData(){
         try{
             const result = await fetch(`https://covidapi.info/api/v1/country/${countryCode}`);
             const data = await result.json();
-            data.lastupdate = isoDateNow();
+            data.lastupdate = isoDateNow(); 
             console.log('updated'); //just for debuging
             await writeStorage(covidDataFile,data);
             resolve(data);
@@ -41,9 +41,9 @@ const server = http.createServer(app);
 app.use(cors());
 
 //endpoints
-app.get('/api/v1/cases/cumulative', async(req,res)=>{
+app.get('/api/v1/cases/cumulative', async(req,res)=>{ //change url to more descriptive
     if(checkUpdate()) {
-        covidData = await updateCovidData();
+        covidData = await updateCovidData();//updated only in memore so we dont need to read it again unless we restart the server, then it reads it again
     }
     const dateStrings=Object.keys(covidData.result);
     const data=dateStrings.map(date=>covidData.result[date].confirmed);
@@ -67,20 +67,20 @@ app.get('/api/v1/cases/daily', async (req,res)=>{
 //begindate, enddate and date are in ISO format.
 //returns an array of objects like {date:"2021-01-01", confirmed:36403}
 app.get('/api/v1/cases/daily/interval/:begindate/:enddate',async (req,res)=>{
-    if(checkUpdate()) {
+    if(checkUpdate()) { //end point that gives interval.only gives partial data.
         covidData = await updateCovidData();
     }
     const beginISO = req.params.begindate;
     const endISO = req.params.enddate;
     const cases=[];
-    for(let date=beginISO; date<=endISO; date=addOneDay(date)){
+    for(let date=beginISO; date<=endISO; date=addOneDay(date)){ //new day, adds one day to isoday
         cases.push({date:date, confirmed:covidData.result[date].confirmed});
     }
     res.json(cases);
 });
 
 //returns number of cumulative cases up to given day: for example if the 
-//date is 2021-01-01 it returns 36403
+//date is 2021-01-01 it returns {data:36403} or {error:'not found'}
 app.get('/api/v1/cases/cumulative/:enddate', async (req,res)=>{
     if (checkUpdate()) {
         covidData = await updateCovidData();
