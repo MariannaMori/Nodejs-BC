@@ -1,0 +1,12 @@
+{
+    "getAll":["select customerID, firstname, lastname, favouriteIceCream, customerclass"],
+    "get":["select customerID, firstname, lastname, favouriteIceCream, customerclass from customerdb",
+           "where customerID=?"],
+    "insert":["insert into customerdb (customerID, firstname, lastname, favouriteIceCream, customerclass)",
+              "values (?,?,?,?,?)"],
+    "update":["update customerdb set firstname=?, lastname=?, favouriteIceCream=?, customerclass=?",
+              "where customerID=?"
+    ],
+    "remove":["delete from customerbd where customerID=?"],
+    "primaryKey":"customerID"
+}
