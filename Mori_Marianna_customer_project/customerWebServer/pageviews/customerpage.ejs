@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer data</title>
+    <link rel="stylesheet" href="/styles/basicstyles.css" type="text/css">
+</head>
+<body>
+    <main>
+        <h1>Customer data:</h1>
+        <% if(data.message) { %>
+            <p class="<%= data.type %>" >
+                <%= data.message %>
+            </p>
+        <% } else { %>
+            <p>Customer Id: <%= data.customerId %></p>
+            <p>Firstname: <%= data.firstname %></p>
+            <p>Lastname: <%= data.lastname %></p>
+            <p>Favourite Icecream: <%= data.favouriteIceCream %></p>
+            <p>Customer Class: <%= data.customerclass %></p>
+        <% } %>
+        <a href="/"><button>Menu</button></a>
+    </main>  
+</body>
+</html>

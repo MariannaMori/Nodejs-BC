@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles/basicstyles.css" type="text/css">
+</head>
+<body>
+    <main>
+        <h1><%= header %></h1>
+        <form action="<%= action %>" method="POST">
+            <div>
+                <p class="form-group">
+                    <label for="customer-id">Customer Id: </label><input id="customer-id" type="text" name="customerId"
+                        size="5" value="<%= customerId.value %>" 
+                        <%= customerId.readonly %> >
+                    
+                </p>
+                 <p class="form-group">
+                    <label for="firstname">Firstname: </label><input id="firstname" type="text" name="firstname"
+                        size="35" value="<%= firstname.value %>" 
+                        <%= firstname.readonly %> >
+                    
+                </p>
+                <p class="form-group">
+                    <label for="lastname">Lastname: </label><input id="lastname" type="text" name="lastname"
+                        size="25" value="<%= lastname.value %>" 
+                        <%= lastname.readonly %> >
+                    
+                </p>
+                <p class="form-group">
+                    <label for="favourite">Favourite Ice Cream: </label><input id="favourite" type="text" name="favouriteIceCream"
+                        size="15" value="<%= favouriteIceCream.value %>" 
+                        <%= favouriteIceCream.readonly %> >
+                    
+                </p>
+                <p class="form-group">
+                    <label for="customer-class">Customer Class: </label><input id="customer-class" type="text" name="customerclass"
+                        size="5" value="<%= customerclass.value %>" 
+                        <%= customerclass.readonly %> >
+                    
+                </p>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <a href="/"><button>Menu</button></a>
+    </main>
+</body>
+</html>
