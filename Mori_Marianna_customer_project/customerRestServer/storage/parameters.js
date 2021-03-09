@@ -4,14 +4,14 @@ const toArrayInsert = customer =>[
      customer.firstname, 
      customer.lastname, 
      customer.favouriteIceCream, 
-     +customer.customerClass
+     customer.customerclass
 ]
 
 const toArrayUpdate = customer => [
     customer.firstname, 
     customer.lastname, 
     customer.favouriteIceCream, 
-    +customer.customerClass, 
+    customer.customerclass, 
     +customer.customerID
 ]
 

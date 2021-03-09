@@ -37,6 +37,7 @@ module.exports = class Datastorage{
                 resolve(result.queryResult);
             }
             catch(err) {
+                console.log(err)
                 reject(MESSAGES.PROGRAM_ERROR());
             }
         });
@@ -57,7 +58,7 @@ module.exports = class Datastorage{
                 reject(MESSAGES.PROGRAM_ERROR());
             }
         });
-    }//get ebd
+    }//get end
 
     insert(resource){
         return new Promise(async (resolve,reject)=>{
@@ -77,6 +78,7 @@ module.exports = class Datastorage{
             try {
                 const result =
                     await this.db.doQuery(updateSql, toArrayUpdate(resource));
+                    console.log(result)
                 if(result.queryResult.rowsChanged===0){
                     resolve(MESSAGES.NOT_UPDATED());
                 }
@@ -85,7 +87,7 @@ module.exports = class Datastorage{
                 } 
             }
             catch (err) {
-                
+              console.log(err)  
                 reject(MESSAGES.PROGRAM_ERROR());
             }
         });
