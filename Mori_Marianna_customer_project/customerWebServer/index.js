@@ -36,7 +36,7 @@ app.route('/getone')
     .get((req,res)=>res.render('getform',{title:'Get',header:'Get', action:'/getone'}))
     .post(async (req,res)=>{
         try{
-            const customerId=req.body.customerId;
+            const customerId=req.body.customerID;
             const result = 
                 await fetch(`http://localhost:4000/customers/${customerId}`, { mode: 'cors' });
             const data = await result.json();
@@ -54,7 +54,7 @@ app.route('/remove')
         action: '/remove' }))
     .post(async (req, res) => {
         try {
-            const customerId = req.body.customerId;
+            const customerId = req.body.customerID;
             const options={
                 method:'DELETE',
                 mode: 'cors'
@@ -82,7 +82,7 @@ app.get('/insertform', (req,res)=>
     })
 );
 
-app.post('/insert', async (req,res)=>{
+app.post('/insert', async (req,res)=>{ 
     try{
         const options={
             method:'POST',
@@ -117,7 +117,7 @@ app.get('/updateform', (req, res) =>
 
 app.post('/updatedata', async (req,res)=>{
     try{
-        const customerId = req.body.customerId;
+        const customerId = req.body.customerID;
         const result =
             await fetch(`http://localhost:4000/customers/${customerId}`, { mode: 'cors' });
         const data = await result.json();
@@ -129,7 +129,7 @@ app.post('/updatedata', async (req,res)=>{
                 title: 'Update a customer',
                 header: 'Customer data',
                 action: '/update',
-                customerId: { value: data.customerId, readonly: 'readonly' },
+                customerId: { value: data.customerID, readonly: 'readonly' },
                 firstname: { value: data.firstname, readonly: '' },
                 lastname: { value: data.lastname, readonly: '' },
                 favouriteIceCream: { value: data.favouriteIceCream, readonly: '' },
@@ -153,7 +153,7 @@ app.post('/update', async (req,res)=>{
             }
         };
 
-        const result = await fetch(`http://localhost:4000/customers/${req.body.customerId}`, options);
+        const result = await fetch(`http://localhost:4000/customers/${req.body.customerID}`, options);
         const data = await result.json();
         res.render('statuspage', { status: data });
     }
